@@ -19,13 +19,18 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun App() {
     MaterialTheme {
         Box(Modifier.statusBarsPadding().background(Color.White)) {
-            Text(
-                text = "Click me!",
-                modifier = Modifier
-                    .clickable { println("Clicked") }
-                    .background(Color.Magenta, shape = RoundedCornerShape(8.dp))
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
-            )
+            MyButton("Click me!")
         }
     }
+}
+
+@Composable
+fun MyButton(text: String, modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        modifier = modifier
+            .clickable { println("Clicked") }
+            .background(Color.Magenta, shape = RoundedCornerShape(8.dp))
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    )
 }
