@@ -12,6 +12,6 @@ val itemList = (1..1000).map {
         id = it,
         title = "Title $it",
         subtitle = "Subtitle $it",
-        thumb = "https://loremflickr.com/400/400?lock=$it"
+        thumb = "https://picsum.photos/id/$it/200/200"
     )
 }
