@@ -1,5 +1,6 @@
 package io.devexpert.cmpcourse.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +16,12 @@ import coil3.compose.AsyncImage
 import io.devexpert.cmpcourse.data.Item
 
 @Composable
-fun HomeList(items: List<Item>, onActionClick: (Action, Int) -> Unit, modifier: Modifier = Modifier) {
+fun HomeList(
+    items: List<Item>,
+    onItemClick: (Item) -> Unit,
+    onActionClick: (Action, Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         itemsIndexed(items, key = { _, item -> item.id }) { index, item ->
             ListItem(
@@ -35,7 +41,9 @@ fun HomeList(items: List<Item>, onActionClick: (Action, Int) -> Unit, modifier: 
                         onActionClick = { onActionClick(it, index) }
                     )
                 },
-                modifier = Modifier.animateItem()
+                modifier = Modifier
+                    .animateItem()
+                    .clickable { onItemClick(item) }
             )
         }
     }

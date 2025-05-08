@@ -13,4 +13,5 @@
     <string name="show_list_view">Mostrar vista de lista</string>
     <string name="item_cloned">%1$s clonado</string>
     <string name="item_deleted">%1$s borrado</string>
+    <string name="back">Volver atrás</string>
 </resources>

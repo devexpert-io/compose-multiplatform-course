@@ -13,4 +13,5 @@
     <string name="show_list_view">Show list view</string>
     <string name="item_cloned">%1$s cloned</string>
     <string name="item_deleted">%1$s deleted</string>
+    <string name="back">Go back</string>
 </resources>

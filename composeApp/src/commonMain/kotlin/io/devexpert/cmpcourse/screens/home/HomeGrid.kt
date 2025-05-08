@@ -1,5 +1,6 @@
 package io.devexpert.cmpcourse.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -17,7 +18,12 @@ import coil3.compose.AsyncImage
 import io.devexpert.cmpcourse.data.Item
 
 @Composable
-fun HomeGrid(items: List<Item>, onActionClick: (Action, Int) -> Unit, modifier: Modifier = Modifier) {
+fun HomeGrid(
+    items: List<Item>,
+    onItemClick: (Item) -> Unit,
+    onActionClick: (Action, Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(180.dp),
         modifier = modifier.fillMaxSize()
@@ -27,6 +33,7 @@ fun HomeGrid(items: List<Item>, onActionClick: (Action, Int) -> Unit, modifier: 
                 modifier = Modifier
                     .padding(2.dp)
                     .animateItem()
+                    .clickable { onItemClick(item) }
             ) {
                 AsyncImage(
                     model = item.thumb,
