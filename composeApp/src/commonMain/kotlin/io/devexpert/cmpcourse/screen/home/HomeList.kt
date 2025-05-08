@@ -1,13 +1,8 @@
 package io.devexpert.cmpcourse.screen.home
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ListItem
@@ -20,11 +15,8 @@ import coil3.compose.AsyncImage
 import io.devexpert.cmpcourse.data.Item
 
 @Composable
-fun HomeList(items: List<Item>, onActionClick: (Action, Int) -> Unit) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = WindowInsets.statusBars.asPaddingValues()
-    ) {
+fun HomeList(items: List<Item>, onActionClick: (Action, Int) -> Unit, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier.fillMaxSize()) {
         itemsIndexed(items, key = { _, item -> item.id }) { index, item ->
             ListItem(
                 headlineContent = { Text(item.title) },
