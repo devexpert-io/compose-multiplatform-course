@@ -1,14 +1,41 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Compose Multiplatform Course
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-blue.svg)
+![Compose Multiplatform](https://img.shields.io/badge/Compose%20Multiplatform-1.8.0-green.svg)
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Description
 
+This is a demonstration application developed with Kotlin Multiplatform and Compose Multiplatform, which allows sharing code and UI between Android and iOS platforms. The application includes features such as:
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- Login screen with validation
+- List and grid view of items
+- Navigation between screens
+- Item details
+- Actions like cloning and deleting items
+
+## Project Structure
+
+* `/composeApp` - Code shared across platforms
+  - `commonMain` - Code that's common for all platforms
+  - `androidMain` - Android-specific code
+  - `iosMain` - iOS-specific code
+  - `commonTest` - Shared unit tests
+
+* `/iosApp` - Entry point for the iOS application
+
+## Features
+
+- **MVVM Architecture**: Uses ViewModels to separate business logic from UI
+- **Navigation**: Implements navigation between screens with parameters
+- **Adaptive UI**: Supports list and grid views
+- **Internationalization**: Localized text resources
+- **Unit Testing**: Includes tests for key components like the password field
+
+## Technologies Used
+
+- Kotlin Multiplatform
+- Compose Multiplatform
+- Material 3
+- Ktor for networking
+- Coil for image loading
+- Kotlin Serialization
