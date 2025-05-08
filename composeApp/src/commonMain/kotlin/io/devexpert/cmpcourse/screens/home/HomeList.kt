@@ -1,4 +1,4 @@
-package io.devexpert.cmpcourse.screen.home
+package io.devexpert.cmpcourse.screens.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size

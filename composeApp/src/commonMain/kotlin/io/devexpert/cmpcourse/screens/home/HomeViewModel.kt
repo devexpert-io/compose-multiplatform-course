@@ -1,4 +1,4 @@
-package io.devexpert.cmpcourse.screen.home
+package io.devexpert.cmpcourse.screens.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

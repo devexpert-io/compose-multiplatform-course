@@ -1,4 +1,4 @@
-package io.devexpert.cmpcourse.screen.home
+package io.devexpert.cmpcourse.screens.home
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -35,7 +35,11 @@ import composemultiplatformcourse.composeapp.generated.resources.item_deleted
 import composemultiplatformcourse.composeapp.generated.resources.more_options
 import composemultiplatformcourse.composeapp.generated.resources.show_grid_view
 import composemultiplatformcourse.composeapp.generated.resources.show_list_view
+import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.stringResource
+
+@Serializable
+object Home
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

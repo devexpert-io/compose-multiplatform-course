@@ -14,6 +14,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,15 +30,24 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import composemultiplatformcourse.composeapp.generated.resources.Res
 import composemultiplatformcourse.composeapp.generated.resources.login
 import composemultiplatformcourse.composeapp.generated.resources.password
-import composemultiplatformcourse.composeapp.generated.resources.success
 import composemultiplatformcourse.composeapp.generated.resources.user
+import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.stringResource
 
+@Serializable
+object Login
+
 @Composable
-fun Login(viewModel: LoginViewModel = viewModel { LoginViewModel() }) {
+fun Login(
+    onLoggedIn: () -> Unit,
+    viewModel: LoginViewModel = viewModel { LoginViewModel() }
+) {
+    LaunchedEffect(viewModel.state.loggedIn) {
+        if (viewModel.state.loggedIn) onLoggedIn()
+    }
+
     val state = viewModel.state
     val message = when {
-        state.loggedIn -> stringResource(Res.string.success)
         state.error != null -> stringResource(state.error)
         else -> null
     }

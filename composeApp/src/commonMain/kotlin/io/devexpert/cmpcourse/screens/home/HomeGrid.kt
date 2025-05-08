@@ -1,4 +1,4 @@
-package io.devexpert.cmpcourse.screen.home
+package io.devexpert.cmpcourse.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
