@@ -9,4 +9,6 @@
     <string name="login">Login</string>
     <string name="invalid_user">Invalid user</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="show_grid_view">Show grid view</string>
+    <string name="show_list_view">Show list view</string>
 </resources>

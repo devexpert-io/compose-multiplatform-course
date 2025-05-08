@@ -9,4 +9,6 @@
     <string name="login">Iniciar sesión</string>
     <string name="invalid_user">Usuario inválido</string>
     <string name="invalid_password">Contraseña inválida</string>
+    <string name="show_grid_view">Mostrar vista de grid</string>
+    <string name="show_list_view">Mostrar vista de lista</string>
 </resources>
