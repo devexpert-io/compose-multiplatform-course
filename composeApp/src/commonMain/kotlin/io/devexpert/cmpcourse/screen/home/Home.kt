@@ -11,11 +11,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +30,8 @@ import composemultiplatformcourse.composeapp.generated.resources.Res
 import composemultiplatformcourse.composeapp.generated.resources.app_name
 import composemultiplatformcourse.composeapp.generated.resources.clone
 import composemultiplatformcourse.composeapp.generated.resources.delete
+import composemultiplatformcourse.composeapp.generated.resources.item_cloned
+import composemultiplatformcourse.composeapp.generated.resources.item_deleted
 import composemultiplatformcourse.composeapp.generated.resources.more_options
 import composemultiplatformcourse.composeapp.generated.resources.show_grid_view
 import composemultiplatformcourse.composeapp.generated.resources.show_list_view
@@ -37,6 +42,23 @@ import org.jetbrains.compose.resources.stringResource
 fun Home(viewModel: HomeViewModel = viewModel { HomeViewModel() }) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     var isGrid by remember { mutableStateOf(false) }
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    viewModel.state.notification?.let { notification ->
+        val stringRes =
+            if (notification.action == Action.CLONE)
+                Res.string.item_cloned
+            else
+                Res.string.item_deleted
+        val message = stringResource(stringRes, notification.title)
+
+        LaunchedEffect(message) {
+            snackbarHostState.showSnackbar(message)
+            viewModel.clearNotification()
+        }
+    }
+
+
     Scaffold(
         topBar = {
             HomeTopAppBar(
@@ -45,17 +67,18 @@ fun Home(viewModel: HomeViewModel = viewModel { HomeViewModel() }) {
                 scrollBehavior = scrollBehavior
             )
         },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         if (isGrid) {
             HomeGrid(
-                items = viewModel.state,
+                items = viewModel.state.items,
                 onActionClick = viewModel::onAction,
                 modifier = Modifier.padding(padding)
             )
         } else {
             HomeList(
-                items = viewModel.state,
+                items = viewModel.state.items,
                 onActionClick = viewModel::onAction,
                 modifier = Modifier.padding(padding)
             )

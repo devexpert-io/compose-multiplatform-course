@@ -11,4 +11,6 @@
     <string name="invalid_password">Contraseña inválida</string>
     <string name="show_grid_view">Mostrar vista de grid</string>
     <string name="show_list_view">Mostrar vista de lista</string>
+    <string name="item_cloned">%1$s clonado</string>
+    <string name="item_deleted">%1$s borrado</string>
 </resources>

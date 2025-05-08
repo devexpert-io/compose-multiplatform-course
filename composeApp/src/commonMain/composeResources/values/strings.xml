@@ -11,4 +11,6 @@
     <string name="invalid_password">Invalid password</string>
     <string name="show_grid_view">Show grid view</string>
     <string name="show_list_view">Show list view</string>
+    <string name="item_cloned">%1$s cloned</string>
+    <string name="item_deleted">%1$s deleted</string>
 </resources>
