@@ -1,5 +1,7 @@
 package io.devexpert.cmpcourse.screens.home
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ViewList
@@ -78,20 +80,22 @@ fun Home(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
-        if (isGrid) {
-            HomeGrid(
-                items = viewModel.state.items,
-                onItemClick = onItemClick,
-                onActionClick = viewModel::onAction,
-                modifier = Modifier.padding(padding)
-            )
-        } else {
-            HomeList(
-                items = viewModel.state.items,
-                onItemClick = onItemClick,
-                onActionClick = viewModel::onAction,
-                modifier = Modifier.padding(padding)
-            )
+        Crossfade(isGrid) { isGrid ->
+            if (isGrid) {
+                HomeGrid(
+                    items = viewModel.state.items,
+                    onItemClick = onItemClick,
+                    onActionClick = viewModel::onAction,
+                    modifier = Modifier.padding(padding)
+                )
+            } else {
+                HomeList(
+                    items = viewModel.state.items,
+                    onItemClick = onItemClick,
+                    onActionClick = viewModel::onAction,
+                    modifier = Modifier.padding(padding)
+                )
+            }
         }
     }
 }

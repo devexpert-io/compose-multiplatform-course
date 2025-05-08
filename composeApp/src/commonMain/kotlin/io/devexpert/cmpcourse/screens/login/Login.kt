@@ -1,5 +1,6 @@
 package io.devexpert.cmpcourse.screens.login
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -84,14 +85,15 @@ fun Login(
                 isError = state.error != null
             )
 
-            Button(
-                onClick = { viewModel.login(user, pass) },
-                enabled = loginEnabled
-            ) {
-                Text(stringResource(Res.string.login))
+            AnimatedVisibility(loginEnabled) {
+                Button(
+                    onClick = { viewModel.login(user, pass) }
+                ) {
+                    Text(stringResource(Res.string.login))
+                }
             }
-            if (message != null) {
-                Text(message)
+            AnimatedVisibility(message != null) {
+                if(message != null) Text(message)
             }
         }
     }
