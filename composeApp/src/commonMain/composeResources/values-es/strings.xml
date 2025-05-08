@@ -1,0 +1,11 @@
+<resources>
+    <string name="more_options">Más opciones</string>
+    <string name="clone">Clonar</string>
+    <string name="delete">Eliminar</string>
+    <string name="success">Éxito</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="invalid_user">Usuario inválido</string>
+    <string name="invalid_password">Contraseña inválida</string>
+</resources>

@@ -26,13 +26,19 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import composemultiplatformcourse.composeapp.generated.resources.Res
+import composemultiplatformcourse.composeapp.generated.resources.login
+import composemultiplatformcourse.composeapp.generated.resources.password
+import composemultiplatformcourse.composeapp.generated.resources.success
+import composemultiplatformcourse.composeapp.generated.resources.user
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun Login(viewModel: LoginViewModel = viewModel()) {
+fun Login(viewModel: LoginViewModel = viewModel { LoginViewModel() }) {
     val state = viewModel.state
     val message = when {
-        state.loggedIn -> "Success"
-        state.error != null -> state.error
+        state.loggedIn -> stringResource(Res.string.success)
+        state.error != null -> stringResource(state.error)
         else -> null
     }
 
@@ -49,7 +55,7 @@ fun Login(viewModel: LoginViewModel = viewModel()) {
         OutlinedTextField(
             value = user,
             onValueChange = { user = it },
-            label = { Text("User") },
+            label = { Text(stringResource(Res.string.user)) },
             isError = state.error != null,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -69,7 +75,7 @@ fun Login(viewModel: LoginViewModel = viewModel()) {
             onClick = { viewModel.login(user, pass) },
             enabled = loginEnabled
         ) {
-            Text("Login")
+            Text(stringResource(Res.string.login))
         }
         if (message != null) {
             Text(message)
@@ -90,7 +96,7 @@ fun PasswordTextField(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
-        label = { Text("Password") },
+        label = { Text(stringResource(Res.string.password)) },
         isError = isError,
         visualTransformation = if (isPassVisible) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {

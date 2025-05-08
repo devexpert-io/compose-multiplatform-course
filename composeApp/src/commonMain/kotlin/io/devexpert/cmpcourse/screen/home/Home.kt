@@ -13,9 +13,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import composemultiplatformcourse.composeapp.generated.resources.Res
+import composemultiplatformcourse.composeapp.generated.resources.clone
+import composemultiplatformcourse.composeapp.generated.resources.delete
+import composemultiplatformcourse.composeapp.generated.resources.more_options
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun Home(viewModel: HomeViewModel = viewModel()) {
+fun Home(viewModel: HomeViewModel = viewModel { HomeViewModel() }) {
     HomeGrid(
         items = viewModel.state,
         onActionClick = viewModel::onAction
@@ -28,15 +33,15 @@ fun MoreActionsIconButton(onActionClick: (Action) -> Unit) {
     IconButton(onClick = { expanded = !expanded }) {
         Icon(
             imageVector = Icons.Default.MoreVert,
-            contentDescription = "More options"
+            contentDescription = stringResource(Res.string.more_options)
         )
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
-                text = { Text("Clone") },
+                text = { Text(stringResource(Res.string.clone)) },
                 onClick = { expanded = false; onActionClick(Action.CLONE) }
             )
             DropdownMenuItem(
-                text = { Text("Delete") },
+                text = { Text(stringResource(Res.string.delete)) },
                 onClick = { expanded = false; onActionClick(Action.DELETE) }
             )
         }
