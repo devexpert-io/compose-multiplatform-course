@@ -3,6 +3,7 @@ package io.devexpert.cmpcourse.screens.login
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -12,6 +13,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -57,38 +59,40 @@ fun Login(
 
     val loginEnabled = user.isNotBlank() && pass.isNotBlank()
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
-    ) {
-        OutlinedTextField(
-            value = user,
-            onValueChange = { user = it },
-            label = { Text(stringResource(Res.string.user)) },
-            isError = state.error != null,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next
-            )
-        )
-
-        PasswordTextField(
-            value = pass,
-            onValueChange = { pass = it },
-            onDone = { if (loginEnabled) viewModel.login(user, pass) },
-            isError = state.error != null
-        )
-
-        Button(
-            onClick = { viewModel.login(user, pass) },
-            enabled = loginEnabled
+    Scaffold { padding ->
+        Column(
+            modifier = Modifier.fillMaxSize().padding(padding),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
         ) {
-            Text(stringResource(Res.string.login))
-        }
-        if (message != null) {
-            Text(message)
+            OutlinedTextField(
+                value = user,
+                onValueChange = { user = it },
+                label = { Text(stringResource(Res.string.user)) },
+                isError = state.error != null,
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = ImeAction.Next
+                )
+            )
+
+            PasswordTextField(
+                value = pass,
+                onValueChange = { pass = it },
+                onDone = { if (loginEnabled) viewModel.login(user, pass) },
+                isError = state.error != null
+            )
+
+            Button(
+                onClick = { viewModel.login(user, pass) },
+                enabled = loginEnabled
+            ) {
+                Text(stringResource(Res.string.login))
+            }
+            if (message != null) {
+                Text(message)
+            }
         }
     }
 }

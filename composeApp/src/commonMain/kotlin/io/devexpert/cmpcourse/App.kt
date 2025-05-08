@@ -16,9 +16,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    CmpTheme {
         val navController = rememberNavController()
-        NavHost(navController, startDestination = Home) {
+        NavHost(navController, startDestination = Login) {
             composable<Login> {
                 Login(onLoggedIn = { navController.navigate(Home) })
             }
